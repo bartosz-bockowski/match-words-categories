@@ -12,7 +12,8 @@ public class KeywordService {
     private final KeywordRepository keywordRepository;
 
     public Keyword findByKeyword(String keyword) {
-        return keywordRepository.findOneByKeyword(keyword);
+        return keywordRepository.findOneByKeyword(keyword)
+                .orElse(null);
     }
-    
+
 }

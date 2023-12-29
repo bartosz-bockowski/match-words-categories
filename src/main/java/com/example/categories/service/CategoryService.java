@@ -29,9 +29,9 @@ public class CategoryService {
                 .map(category -> modelMapper.map(category, CategoryDTO.class))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        List<CategoryDTO> result = new ArrayList<>(categoryOccurrences.keySet().stream()
-                .peek(category -> category.setWordsMatched(categoryOccurrences.get(category).intValue()))
-                .toList());
+        List<CategoryDTO> result = new ArrayList<>(categoryOccurrences.keySet());
+
+        result.forEach(category -> category.setWordsMatched(categoryOccurrences.get(category).intValue()));
 
         result.sort(Comparator.comparing(CategoryDTO::getWordsMatched).reversed());
 
